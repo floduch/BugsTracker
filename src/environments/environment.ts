@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+	production: false,
+	crudToken: "a78c786c84e74ddd8547689507532a08",
+	apiURL: "serveur02.team-gie.com:3000",
+    localApiURL: "localhost:3000"
 };
 
 /*

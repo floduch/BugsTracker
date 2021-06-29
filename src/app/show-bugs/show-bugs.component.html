@@ -1,0 +1,83 @@
+<!-- Afficher les bugs -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row mx-auto">
+
+				<div class="col-lg-3 pt-2 ps-5 pb-5 pe-5 border border-2 border-danger" cdkDropList
+					#openList="cdkDropList" [cdkDropListData]="openBugArray" [cdkDropListConnectedTo]="[inProgressList]"
+					(cdkDropListDropped)="drop($event)" [attr.status]="bugStatusEnum.Open">
+					<h5 class="text-center text-uppercase text-danger">Open</h5>
+					<div *ngFor="let bug of openBugArray" cdkDrag>
+						<div class="card border-dark">
+							<div class="card-header border-dark">
+								<span class="align-baseline">
+									<h5 class="card-title">{{ bug.title }}</h5>
+									<a routerLink="/add/{{bug.id}}"><img
+											src="https://img.icons8.com/small/50/000000/edit.png"
+											style="width: 10%;" /></a>
+									<a (click)="deleteBug(bug.id)"><img
+											src="https://img.icons8.com/wired/64/000000/filled-trash.png"
+											style="width: 10%;" /></a>
+								</span>
+							</div>
+							<div class="card-body">
+								<p class="card-text">{{ bug.description }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 pt-2 ps-5 pb-5 pe-5 offset-md-1 border border-2 border-warning" cdkDropList
+					#inProgressList="cdkDropList" [cdkDropListData]="inProgressBugArray"
+					[cdkDropListConnectedTo]="[openList, fixedList]" (cdkDropListDropped)="drop($event)"
+					[attr.status]="bugStatusEnum.InProgress">
+					<h5 class="text-center text-uppercase text-warning">In progress</h5>
+					<div *ngFor="let bug of inProgressBugArray" cdkDrag>
+						<div class="card border-dark">
+							<div class="card-header border-dark">
+								<span class="align-baseline">
+									<h5 class="card-title">{{ bug.title }}</h5>
+									<a routerLink="/add/{{bug.id}}"><img
+											src="https://img.icons8.com/small/50/000000/edit.png"
+											style="width: 10%;" /></a>
+									<a (click)="deleteBug(bug.id)"><img
+											src="https://img.icons8.com/wired/64/000000/filled-trash.png"
+											style="width: 10%;" /></a>
+								</span>
+							</div>
+							<div class="card-body">
+								<p class="card-text">{{ bug.description }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 pt-2 ps-5 pb-5 pe-5 offset-md-1 border border-2 border-success" cdkDropList
+					#fixedList="cdkDropList" [cdkDropListData]="closeBugArray"
+					[cdkDropListConnectedTo]="[inProgressList, openList]" (cdkDropListDropped)="drop($event)"
+					[attr.status]="bugStatusEnum.Fixed">
+					<h5 class="text-center text-uppercase text-success">Fixed</h5>
+					<div *ngFor="let bug of closeBugArray" cdkDrag>
+						<div class="card border-dark">
+							<div class="card-header border-dark">
+								<span class="align-baseline">
+									<h5 class="card-title">{{ bug.title }}</h5>
+									<a routerLink="/add/{{bug.id}}"><img
+											src="https://img.icons8.com/small/50/000000/edit.png"
+											style="width: 10%;" /></a>
+									<a (click)="deleteBug(bug.id)"><img
+											src="https://img.icons8.com/wired/64/000000/filled-trash.png"
+											style="width: 10%;" /></a>
+								</span>
+							</div>
+							<div class="card-body">
+								<p class="card-text">{{ bug.description }}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

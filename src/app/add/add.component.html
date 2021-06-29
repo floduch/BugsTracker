@@ -1,0 +1,15 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="container">
+			<form [formGroup]="addBugForm" (ngSubmit)="create()" class="form-group">
+				<input type="text" placeholder="titre du bug" formControlName="title" class="form-control">
+				<textarea cols="30" rows="10" formControlName="description" placeholder="Description du bug"
+					class="form-control"></textarea>
+
+				<button type="submit" [disabled]="!addBugForm.valid" class="form-control">Soumettre</button>
+			</form>
+
+			<p>{{ status }}</p>
+		</div>
+	</div>
+</div>
